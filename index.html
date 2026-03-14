@@ -16,6 +16,12 @@ text-align:center;
 margin:0;
 }
 
+.card img{
+width:200px;
+border-radius:8px;
+margin-bottom:10px;
+}
+
 header{
 background:#e8d8d8;
 padding:40px;
@@ -68,9 +74,16 @@ box-shadow:0 0 10px rgba(0,0,0,0.1);
 
 <header>
 
-<h1>Wanderson & Noiva</h1>
+<h1>Wanderson & Lucimara</h1>
 
-<p>Lista de Presentes</p>
+<p>Nosso casamento 💍</p>
+
+<p>
+Estamos muito felizes em compartilhar este momento com vocês.
+Criamos esta lista de presentes para ajudar a montar nossa nova casa.
+Caso prefira, também é possível contribuir com valores para a aquisição da mobília.
+Obs. Optamos pela utilização apenas de eletrodomésticos na cor INOX.
+</p>
 
 </header>
 
@@ -78,7 +91,7 @@ box-shadow:0 0 10px rgba(0,0,0,0.1);
 
 <div class="pix">
 
-<h2>Contribuição para Lua de Mel</h2>
+<h2>Contribuição para Aquisição da Mobília</h2>
 
 <img src="qrcodepix.png" width="200">
 
@@ -112,6 +125,8 @@ if(status=="livre"){
 html+=`
 
 <div class="card">
+
+<img src="airfryer.jpg" width="200">
 
 <h3>${presente}</h3>
 
