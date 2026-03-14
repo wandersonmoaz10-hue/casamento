@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Lista de Presentes</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#fafafa;
+text-align:center;
+margin:0;
+}
+
+header{
+background:#e8d8d8;
+padding:40px;
+}
+
+.container{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.card{
+
+background:white;
+margin:20px;
+padding:20px;
+width:250px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+
+}
+
+button{
+
+background:#2e7d32;
+color:white;
+border:none;
+padding:10px;
+border-radius:5px;
+cursor:pointer;
+
+}
+
+.pix{
+
+margin:40px;
+padding:30px;
+background:white;
+display:inline-block;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>Wanderson & Noiva</h1>
+
+<p>Lista de Presentes</p>
+
+</header>
+
+<div class="container" id="lista"></div>
+
+<div class="pix">
+
+<h2>Contribuição para Lua de Mel</h2>
+
+<img src="qrcodepix.png" width="200">
+
+<p>Chave Pix: 38991763001</p>
+
+</div>
+
+<script>
+
+var API="https://script.google.com/macros/s/AKfycbyD5QHGvMDsTx8-Dpmitp_C-eom2_bLnCVp2zcYSyqCkN_ropTTMDYhGDhAOH3RDPZb/exec";
+
+function carregar(){
+
+fetch(API)
+
+.then(r=>r.json())
+
+.then(data=>{
+
+var html="";
+
+for(var i=1;i<data.length;i++){
+
+var id=data[i][0];
+var presente=data[i][1];
+var status=data[i][2];
+var link=data[i][4];
+
+if(status=="livre"){
+
+html+=`
+
+<div class="card">
+
+<h3>${presente}</h3>
+
+<a href="${link}" target="_blank">Ver produto</a>
+
+<br><br>
+
+<input placeholder="Seu nome" id="nome${id}">
+
+<br><br>
+
+<button onclick="reservar(${id})">
+
+Reservar presente
+
+</button>
+
+</div>
+
+`;
+
+}
+
+else{
+
+html+=`
+
+<div class="card">
+
+<h3>${presente}</h3>
+
+<p>Já reservado</p>
+
+</div>
+
+`;
+
+}
+
+}
+
+document.getElementById("lista").innerHTML=html;
+
+});
+
+}
+
+function reservar(id){
+
+var nome=document.getElementById("nome"+id).value;
+
+fetch(API,{
+
+method:"POST",
+
+body:new URLSearchParams({
+
+id:id,
+nome:nome
+
+})
+
+})
+
+.then(()=>{
+
+alert("Presente reservado!");
+
+carregar();
+
+});
+
+}
+
+carregar();
+
+</script>
+
+</body>
+
+</html>
