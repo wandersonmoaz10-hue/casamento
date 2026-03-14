@@ -16,8 +16,29 @@ margin:0;
 }
 
 header{
-background:#e8d8d8;
-padding:60px 40px;
+background-image:url("background-casamento.png");
+background-size:cover;
+background-position:center;
+padding:120px 40px;
+color:white;
+text-shadow:2px 2px 6px rgba(0,0,0,0.6);
+position:relative;
+}
+
+header::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.35);
+z-index:0;
+}
+
+header *{
+position:relative;
+z-index:1;
 }
 
 .container{
