@@ -4,7 +4,6 @@
 <head>
 
 <meta charset="UTF-8">
-
 <title>Lista de Presentes</title>
 
 <style>
@@ -14,12 +13,6 @@ font-family:Arial;
 background:#fafafa;
 text-align:center;
 margin:0;
-}
-
-.card img{
-width:200px;
-border-radius:8px;
-margin-bottom:10px;
 }
 
 header{
@@ -34,36 +27,46 @@ justify-content:center;
 }
 
 .card{
-
 background:white;
 margin:20px;
 padding:20px;
 width:250px;
 border-radius:10px;
 box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
 
+.card img{
+width:200px;
+border-radius:8px;
+margin-bottom:10px;
 }
 
 button{
-
 background:#2e7d32;
 color:white;
 border:none;
 padding:10px;
 border-radius:5px;
 cursor:pointer;
+}
 
+button:hover{
+background:#256428;
 }
 
 .pix{
-
 margin:40px;
 padding:30px;
 background:white;
 display:inline-block;
 border-radius:10px;
 box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
 
+input{
+padding:8px;
+border-radius:5px;
+border:1px solid #ccc;
 }
 
 </style>
@@ -106,9 +109,7 @@ var API="https://script.google.com/macros/s/AKfycbyD5QHGvMDsTx8-Dpmitp_C-eom2_bL
 function carregar(){
 
 fetch(API)
-
 .then(r=>r.json())
-
 .then(data=>{
 
 var html="";
@@ -119,6 +120,11 @@ var id=data[i][0];
 var presente=data[i][1];
 var status=data[i][2];
 var link=data[i][4];
+var foto=data[i][5];
+
+if(!foto || foto==""){
+foto="https://via.placeholder.com/200?text=Presente";
+}
 
 if(status=="livre"){
 
@@ -126,7 +132,7 @@ html+=`
 
 <div class="card">
 
-<img src="airfryer.jpg" width="200">
+<img src="${foto}">
 
 <h3>${presente}</h3>
 
@@ -139,9 +145,7 @@ html+=`
 <br><br>
 
 <button onclick="reservar(${id})">
-
 Reservar presente
-
 </button>
 
 </div>
@@ -156,9 +160,11 @@ html+=`
 
 <div class="card">
 
+<img src="${foto}">
+
 <h3>${presente}</h3>
 
-<p>Já reservado</p>
+<p><b>Já reservado</b></p>
 
 </div>
 
@@ -178,22 +184,21 @@ function reservar(id){
 
 var nome=document.getElementById("nome"+id).value;
 
+if(nome.trim()==""){
+alert("Digite seu nome para reservar o presente.");
+return;
+}
+
 fetch(API,{
-
 method:"POST",
-
 body:new URLSearchParams({
-
 id:id,
 nome:nome
-
 })
-
 })
-
 .then(()=>{
 
-alert("Presente reservado!");
+alert("Presente reservado com sucesso!");
 
 carregar();
 
