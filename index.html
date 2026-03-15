@@ -4,6 +4,8 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Wanderson & Lucimara</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
@@ -113,12 +115,6 @@ position:relative;
 z-index:1;
 }
 
-header h1{
-font-family:'Playfair Display', serif;
-font-size:64px;
-margin-bottom:10px;
-}
-
 .subtitulo{
 font-size:42px;
 font-weight:600;
@@ -194,13 +190,34 @@ button{
 background:#2e7d32;
 color:white;
 border:none;
-padding:15px;
-border-radius:9px;
+padding:20px 30px;
+border-radius:12px;
 cursor:pointer;
+font-size:18px;
+font-weight:bold;
+transition:0.2s;
 }
 
 button:hover{
 background:#256428;
+transform:scale(1.05);
+}
+
+.card a{
+display:inline-block;
+background:#c79a2b;
+color:white;
+padding:18px 30px;
+border-radius:12px;
+font-size:18px;
+font-weight:bold;
+text-decoration:none;
+transition:0.2s;
+}
+
+.card a:hover{
+background:#a88123;
+transform:scale(1.05);
 }
 
 .pix{
@@ -210,6 +227,11 @@ background:white;
 display:inline-block;
 border-radius:15px;
 box-shadow:0 0 15px rgba(0,0,0,0.1);
+}
+
+.pix img{
+width:320px;
+max-width:90%;
 }
 
 .recados{
@@ -235,10 +257,105 @@ border-radius:10px;
 border:2px solid #ccc;
 }
 
+.recados button{
+font-size:20px;
+padding:20px 40px;
+}
+
 input{
 padding:15px;
 border-radius:10px;
 border:2px solid #ccc;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width:768px){
+
+header{
+height:650px;
+padding:40px 20px;
+}
+
+.nome-casal{
+font-size:42px;
+margin-top:20px;
+}
+
+.texto-evento{
+font-size:20px;
+padding:0 10px;
+}
+
+.subtitulo{
+font-size:26px;
+}
+
+#contador{
+font-size:28px;
+}
+
+.botao-confirmar{
+font-size:22px;
+padding:18px 35px;
+}
+
+.container{
+flex-direction:column;
+align-items:center;
+}
+
+.card{
+width:90%;
+margin:20px 0;
+}
+
+.card img{
+height:180px;
+}
+
+.card a{
+width:100%;
+padding:16px;
+}
+
+button{
+width:100%;
+padding:18px;
+}
+
+.recados{
+width:90%;
+padding:30px 20px;
+}
+
+.recados input{
+width:90%;
+}
+
+.recados textarea{
+width:90%;
+}
+
+.pix{
+width:90%;
+margin:40px auto;
+}
+
+.pix img{
+width:260px;
+}
+
+iframe{
+height:300px;
+}
+
+.intro-presentes{
+font-size:20px;
+padding:0 15px;
+}
+
 }
 
 </style>
@@ -259,19 +376,12 @@ Wanderson & Lucimara
 
 <p>
 É com muita alegria que compartilhamos este momento especial com vocês.
-Nosso casamento civil será realizado no dia <b>30 de abril</b>, às <b>16:15</b>,
-em uma cerimônia reservada para poucos convidados, devido às limitações físicas do local.
+Nosso casamento civil será realizado no dia <b>30 de abril</b>, às <b>16:15</b>.
 </p>
 
 <p>
-No mesmo dia, às <b>19:00</b>, teremos uma recepção com jantar para celebrar
-este momento ao lado de familiares e amigos no
+Às <b>19:00</b>, teremos uma recepção com jantar no
 <b>Restaurante Maturatto</b>, em Montes Claros – MG.
-</p>
-
-<p>
-Ficaremos muito felizes em contar com a presença de vocês
-neste momento tão importante em nossas vidas.
 </p>
 
 </div>
@@ -288,8 +398,7 @@ neste momento tão importante em nossas vidas.
 <h2>Confirme sua presença no Jantar</h2>
 
 <p class="intro-presentes">
-Para nos ajudar na organização do casamento, pedimos que cada convidado confirme sua presença, até a sexta-feira 20/03/2026, clicando no botão abaixo.
-Caso venha acompanhado(a), solicitamos que cada pessoa confirme sua presença individualmente.
+Pedimos que confirme sua presença até 20/03/2026 clicando abaixo.
 </p>
 
 <a href="https://forms.office.com/r/dEbC00cWDb" class="botao-confirmar">
@@ -302,14 +411,13 @@ Confirmar presença
 
 <h2>Local da Recepção</h2>
 
-<p>Restaurante Maturatto – Montes Claros, MG</p>
+<p>Restaurante Maturatto – Montes Claros</p>
 
 <iframe
 src="https://www.google.com/maps?q=Restaurante+Maturatto+Montes+Claros&output=embed"
 width="90%"
 height="350"
 style="border:0;border-radius:12px;"
-allowfullscreen=""
 loading="lazy">
 </iframe>
 
@@ -320,18 +428,8 @@ loading="lazy">
 <h2>Lista de Presentes</h2>
 
 <p class="intro-presentes">
-Sua presença em nosso casamento já é o maior presente que poderíamos receber.
-Mas, caso deseje nos presentear, preparamos uma pequena lista com algumas sugestões
-para ajudar na construção do nosso novo lar.
-</p>
-
-<p class="intro-presentes">
-Obs. Optamos pela utilização apenas de eletrodomésticos na cor INOX/preto.
-</p>
-<p class="intro-presentes">
-Obs². Caso prefiram comprar para entrega direto em BH, o endereço é: 
-Av. Raja Gabaglia, nº 1583, apto 1210, bairro Luxemburgo, 
-Belo Horizonte-MG, CEP: 30.380-435
+Sua presença já é o maior presente.
+Mas se desejar nos presentear, criamos algumas sugestões.
 </p>
 
 <div class="container" id="lista"></div>
@@ -340,9 +438,9 @@ Belo Horizonte-MG, CEP: 30.380-435
 
 <div class="pix">
 
-<h2>Ficou com dúvida em qual presente escolher? Caso deseje, pode contribuir diretamente com o PIX do casal.</h2>
+<h2>Contribuição via PIX</h2>
 
-<img src="qrcodepix.png" width="200">
+<img src="qrcodepix.png">
 
 <p>Chave Pix: 38991763001</p>
 
@@ -351,11 +449,6 @@ Belo Horizonte-MG, CEP: 30.380-435
 <section class="recados">
 
 <h2>💌 Recado para os noivos</h2>
-
-<p>
-Deixe uma mensagem especial para nós.
-Ficaremos muito felizes em ler!
-</p>
 
 <input id="nomeRecado" placeholder="Seu nome">
 
@@ -374,8 +467,6 @@ Enviar recado
 <script>
 
 var API="https://script.google.com/macros/s/AKfycbyD5QHGvMDsTx8-Dpmitp_C-eom2_bLnCVp2zcYSyqCkN_ropTTMDYhGDhAOH3RDPZb/exec";
-
-var API_RECADOS="https://script.google.com/macros/s/AKfycbzbMm_G-tDYYpWVla5P8uDrR7XF-Q8HEFNFG6y0XqtCyNw5GaUFgjHofbLBei72BtjhVw/exec";
 
 function carregar(){
 
@@ -466,33 +557,8 @@ nome:nome
 })
 })
 .then(()=>{
-alert("Presente reservado com sucesso!");
+alert("Presente reservado!");
 carregar();
-});
-
-}
-
-function enviarRecado(){
-
-var nome=document.getElementById("nomeRecado").value;
-var recado=document.getElementById("textoRecado").value;
-
-if(nome.trim()=="" || recado.trim()==""){
-alert("Preencha seu nome e o recado.");
-return;
-}
-
-fetch(API_RECADOS,{
-method:"POST",
-body:new URLSearchParams({
-nome:nome,
-recado:recado
-})
-})
-.then(()=>{
-alert("Recado enviado com sucesso!");
-document.getElementById("nomeRecado").value="";
-document.getElementById("textoRecado").value="";
 });
 
 }
@@ -500,18 +566,22 @@ document.getElementById("textoRecado").value="";
 carregar();
 
 var dataCasamento = new Date("Apr 30, 2026 16:15:00").getTime();
-var contador = setInterval(function(){
+
+setInterval(function(){
+
 var agora = new Date().getTime();
 var distancia = dataCasamento - agora;
-var dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
-var horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-var minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+
+var dias = Math.floor(distancia / (1000*60*60*24));
+var horas = Math.floor((distancia%(1000*60*60*24))/(1000*60*60));
+var minutos = Math.floor((distancia%(1000*60*60))/(1000*60));
+
 document.getElementById("contador").innerHTML =
-dias + " dias • " + horas + " horas • " + minutos + " minutos";
-}, 1000);
+dias+" dias • "+horas+" horas • "+minutos+" minutos";
+
+},1000);
 
 </script>
 
 </body>
-
 </html>
