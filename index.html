@@ -39,6 +39,32 @@ text-shadow:2px 2px 6px rgba(0,0,0,0.6);
 position:relative;
 }
 
+.recados{
+
+background:white;
+margin:60px auto;
+padding:40px;
+max-width:600px;
+
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+
+}
+
+.recados textarea{
+width:90%;
+padding:10px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+.recados input{
+width:60%;
+padding:8px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
 header::before{
 content:"";
 position:absolute;
@@ -332,7 +358,60 @@ carregar();
 
 carregar();
 
+<section class="recados">
+
+<h2>💌 Recado para os noivos</h2>
+
+<p>
+Deixe uma mensagem especial para nós.
+Ficaremos muito felizes em ler!
+</p>
+
+<input id="nomeRecado" placeholder="Seu nome">
+
+<br><br>
+
+<textarea id="textoRecado" placeholder="Escreva seu recado..." rows="4"></textarea>
+
+<br><br>
+
+<button onclick="enviarRecado()">
+Enviar recado
+</button>
+
+</section>
+
 </script>
+
+var API_RECADOS="https://script.google.com/macros/s/AKfycbzbMm_G-tDYYpWVla5P8uDrR7XF-Q8HEFNFG6y0XqtCyNw5GaUFgjHofbLBei72BtjhVw/exec";
+
+function enviarRecado(){
+
+var nome=document.getElementById("nomeRecado").value;
+var recado=document.getElementById("textoRecado").value;
+
+if(nome.trim()=="" || recado.trim()==""){
+alert("Preencha seu nome e o recado.");
+return;
+}
+
+fetch(API_RECADOS,{
+method:"POST",
+body:new URLSearchParams({
+nome:nome,
+recado:recado
+})
+})
+.then(()=>{
+
+alert("Recado enviado com sucesso!");
+
+document.getElementById("nomeRecado").value="";
+document.getElementById("textoRecado").value="";
+
+});
+
+}
 
 </body>
 
