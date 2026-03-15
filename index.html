@@ -115,6 +115,12 @@ position:relative;
 z-index:1;
 }
 
+header h1{
+font-family:'Playfair Display', serif;
+font-size:64px;
+margin-bottom:10px;
+}
+
 .subtitulo{
 font-size:42px;
 font-weight:600;
@@ -269,7 +275,7 @@ border:2px solid #ccc;
 }
 
 
-/* ================= MOBILE ================= */
+/* ===== MOBILE ===== */
 
 @media (max-width:768px){
 
@@ -318,11 +324,13 @@ height:180px;
 .card a{
 width:100%;
 padding:16px;
+font-size:18px;
 }
 
 button{
 width:100%;
 padding:18px;
+font-size:18px;
 }
 
 .recados{
@@ -376,12 +384,19 @@ Wanderson & Lucimara
 
 <p>
 É com muita alegria que compartilhamos este momento especial com vocês.
-Nosso casamento civil será realizado no dia <b>30 de abril</b>, às <b>16:15</b>.
+Nosso casamento civil será realizado no dia <b>30 de abril</b>, às <b>16:15</b>,
+em uma cerimônia reservada para poucos convidados, devido às limitações físicas do local.
 </p>
 
 <p>
-Às <b>19:00</b>, teremos uma recepção com jantar no
+No mesmo dia, às <b>19:00</b>, teremos uma recepção com jantar para celebrar
+este momento ao lado de familiares e amigos no
 <b>Restaurante Maturatto</b>, em Montes Claros – MG.
+</p>
+
+<p>
+Ficaremos muito felizes em contar com a presença de vocês
+neste momento tão importante em nossas vidas.
 </p>
 
 </div>
@@ -398,7 +413,8 @@ Nosso casamento civil será realizado no dia <b>30 de abril</b>, às <b>16:15</b
 <h2>Confirme sua presença no Jantar</h2>
 
 <p class="intro-presentes">
-Pedimos que confirme sua presença até 20/03/2026 clicando abaixo.
+Para nos ajudar na organização do casamento, pedimos que cada convidado confirme sua presença, até a sexta-feira 20/03/2026, clicando no botão abaixo.
+Caso venha acompanhado(a), solicitamos que cada pessoa confirme sua presença individualmente.
 </p>
 
 <a href="https://forms.office.com/r/dEbC00cWDb" class="botao-confirmar">
@@ -411,13 +427,14 @@ Confirmar presença
 
 <h2>Local da Recepção</h2>
 
-<p>Restaurante Maturatto – Montes Claros</p>
+<p>Restaurante Maturatto – Montes Claros, MG</p>
 
 <iframe
 src="https://www.google.com/maps?q=Restaurante+Maturatto+Montes+Claros&output=embed"
 width="90%"
 height="350"
 style="border:0;border-radius:12px;"
+allowfullscreen=""
 loading="lazy">
 </iframe>
 
@@ -428,8 +445,18 @@ loading="lazy">
 <h2>Lista de Presentes</h2>
 
 <p class="intro-presentes">
-Sua presença já é o maior presente.
-Mas se desejar nos presentear, criamos algumas sugestões.
+Sua presença em nosso casamento já é o maior presente que poderíamos receber.
+Mas, caso deseje nos presentear, preparamos uma pequena lista com algumas sugestões
+para ajudar na construção do nosso novo lar.
+</p>
+
+<p class="intro-presentes">
+Obs. Optamos pela utilização apenas de eletrodomésticos na cor INOX/preto.
+</p>
+<p class="intro-presentes">
+Obs². Caso prefiram comprar para entrega direto em BH, o endereço é: 
+Av. Raja Gabaglia, nº 1583, apto 1210, bairro Luxemburgo, 
+Belo Horizonte-MG, CEP: 30.380-435
 </p>
 
 <div class="container" id="lista"></div>
@@ -438,9 +465,9 @@ Mas se desejar nos presentear, criamos algumas sugestões.
 
 <div class="pix">
 
-<h2>Contribuição via PIX</h2>
+<h2>Ficou com dúvida em qual presente escolher? Caso deseje, pode contribuir diretamente com o PIX do casal.</h2>
 
-<img src="qrcodepix.png">
+<img src="qrcodepix.png" width="200">
 
 <p>Chave Pix: 38991763001</p>
 
@@ -449,6 +476,11 @@ Mas se desejar nos presentear, criamos algumas sugestões.
 <section class="recados">
 
 <h2>💌 Recado para os noivos</h2>
+
+<p>
+Deixe uma mensagem especial para nós.
+Ficaremos muito felizes em ler!
+</p>
 
 <input id="nomeRecado" placeholder="Seu nome">
 
@@ -467,6 +499,8 @@ Enviar recado
 <script>
 
 var API="https://script.google.com/macros/s/AKfycbyD5QHGvMDsTx8-Dpmitp_C-eom2_bLnCVp2zcYSyqCkN_ropTTMDYhGDhAOH3RDPZb/exec";
+
+var API_RECADOS="https://script.google.com/macros/s/AKfycbzbMm_G-tDYYpWVla5P8uDrR7XF-Q8HEFNFG6y0XqtCyNw5GaUFgjHofbLBei72BtjhVw/exec";
 
 function carregar(){
 
@@ -557,8 +591,33 @@ nome:nome
 })
 })
 .then(()=>{
-alert("Presente reservado!");
+alert("Presente reservado com sucesso!");
 carregar();
+});
+
+}
+
+function enviarRecado(){
+
+var nome=document.getElementById("nomeRecado").value;
+var recado=document.getElementById("textoRecado").value;
+
+if(nome.trim()=="" || recado.trim()==""){
+alert("Preencha seu nome e o recado.");
+return;
+}
+
+fetch(API_RECADOS,{
+method:"POST",
+body:new URLSearchParams({
+nome:nome,
+recado:recado
+})
+})
+.then(()=>{
+alert("Recado enviado com sucesso!");
+document.getElementById("nomeRecado").value="";
+document.getElementById("textoRecado").value="";
 });
 
 }
@@ -566,22 +625,18 @@ carregar();
 carregar();
 
 var dataCasamento = new Date("Apr 30, 2026 16:15:00").getTime();
-
-setInterval(function(){
-
+var contador = setInterval(function(){
 var agora = new Date().getTime();
 var distancia = dataCasamento - agora;
-
-var dias = Math.floor(distancia / (1000*60*60*24));
-var horas = Math.floor((distancia%(1000*60*60*24))/(1000*60*60));
-var minutos = Math.floor((distancia%(1000*60*60))/(1000*60));
-
+var dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+var horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+var minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
 document.getElementById("contador").innerHTML =
-dias+" dias • "+horas+" horas • "+minutos+" minutos";
-
-},1000);
+dias + " dias • " + horas + " horas • " + minutos + " minutos";
+}, 1000);
 
 </script>
 
 </body>
+
 </html>
