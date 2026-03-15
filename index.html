@@ -4,7 +4,9 @@
 <head>
 
 <meta charset="UTF-8">
-<title>Lista de Presentes</title>
+<title>Wanderson & Lucimara</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -39,32 +41,6 @@ text-shadow:2px 2px 6px rgba(0,0,0,0.6);
 position:relative;
 }
 
-.recados{
-
-background:white;
-margin:60px auto;
-padding:40px;
-max-width:600px;
-
-border-radius:12px;
-box-shadow:0 5px 15px rgba(0,0,0,0.1);
-
-}
-
-.recados textarea{
-width:90%;
-padding:10px;
-border-radius:6px;
-border:1px solid #ccc;
-}
-
-.recados input{
-width:60%;
-padding:8px;
-border-radius:6px;
-border:1px solid #ccc;
-}
-
 header::before{
 content:"";
 position:absolute;
@@ -81,23 +57,21 @@ position:relative;
 z-index:1;
 }
 
+header h1{
+font-family:'Playfair Display', serif;
+font-size:64px;
+margin-bottom:10px;
+}
+
+.subtitulo{
+font-size:32px;
+font-weight:600;
+margin-bottom:20px;
+}
+
 .confirmacao{
 background:white;
 padding:60px 20px;
-}
-
-.confirmacao h2{
-margin-top:0;
-}
-
-header h1{
-font-family:'Playfair Display', serif;
-}
-
-header j{
-max-width:800px;
-font-size:18px;
-line-height:1.6;
 }
 
 .botao-confirmar{
@@ -116,16 +90,6 @@ transition:0.3s;
 .botao-confirmar:hover{
 background:#a88123;
 transform:scale(1.05);
-}
-
-.botao-presentes{
-display:inline-block;
-margin-top:20px;
-padding:10px 22px;
-background:#2e7d32;
-color:white;
-border-radius:6px;
-text-decoration:none;
 }
 
 .container{
@@ -171,6 +135,29 @@ border-radius:10px;
 box-shadow:0 0 10px rgba(0,0,0,0.1);
 }
 
+.recados{
+background:white;
+margin:60px auto;
+padding:40px;
+max-width:600px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.recados textarea{
+width:90%;
+padding:10px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+.recados input{
+width:60%;
+padding:8px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
 input{
 padding:8px;
 border-radius:5px;
@@ -184,10 +171,10 @@ border:1px solid #ccc;
 <body>
 
 <header>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+
 <h1>Wanderson & Lucimara</h1>
 
-<j>Nosso casamento 💍</j>
+<p class="subtitulo">Nosso casamento 💍</p>
 
 <p>
 É com muita alegria que compartilhamos este momento especial com vocês.
@@ -208,49 +195,38 @@ neste momento tão importante em nossas vidas.
 
 </header>
 
-<!-- CONFIRMAÇÃO DE PRESENÇA -->
-
 <section class="confirmacao">
 
 <h2>Confirme sua presença no Jantar</h2>
 
 <p class="intro-presentes">
 Para nos ajudar na organização do casamento, pedimos que cada convidado confirme sua presença clicando no botão abaixo.
-Caso venha acompanhado(a), solicitamos que cada pessoa confirme sua presença individualmente 
-(por exemplo, em um casal, cada um deve fazer sua própria confirmação).
+Caso venha acompanhado(a), solicitamos que cada pessoa confirme sua presença individualmente.
 </p>
 
 <a href="https://forms.office.com/r/dEbC00cWDb" class="botao-confirmar">
 Confirmar presença
 </a>
 
-<br><br>
-
 </section>
-
-<!-- LISTA DE PRESENTES -->
 
 <section id="presentes">
 
 <h2>Lista de Presentes</h2>
 
 <p class="intro-presentes">
-Sua presença em nosso casamento já é o maior presente que poderíamos receber. Mas,
-caso deseje nos presentear, preparamos uma pequena lista com algumas sugestões
-para ajudar na construção do nosso novo lar. Fique à vontade para escolher
-aquilo que achar mais especial.
+Sua presença em nosso casamento já é o maior presente que poderíamos receber.
+Mas, caso deseje nos presentear, preparamos uma pequena lista com algumas sugestões
+para ajudar na construção do nosso novo lar.
 </p>
 
 <p class="intro-presentes">
 Obs. Optamos pela utilização apenas de eletrodomésticos na cor INOX.
-Obs². Ao escolher por um presente, pedimos que coloque seu nome e clique no botão "Reservar presente"
 </p>
-  
+
 <div class="container" id="lista"></div>
 
 </section>
-
-<!-- PIX -->
 
 <div class="pix">
 
@@ -262,9 +238,34 @@ Obs². Ao escolher por um presente, pedimos que coloque seu nome e clique no bot
 
 </div>
 
+<section class="recados">
+
+<h2>💌 Recado para os noivos</h2>
+
+<p>
+Deixe uma mensagem especial para nós.
+Ficaremos muito felizes em ler!
+</p>
+
+<input id="nomeRecado" placeholder="Seu nome">
+
+<br><br>
+
+<textarea id="textoRecado" placeholder="Escreva seu recado..." rows="4"></textarea>
+
+<br><br>
+
+<button onclick="enviarRecado()">
+Enviar recado
+</button>
+
+</section>
+
 <script>
 
 var API="https://script.google.com/macros/s/AKfycbyD5QHGvMDsTx8-Dpmitp_C-eom2_bLnCVp2zcYSyqCkN_ropTTMDYhGDhAOH3RDPZb/exec";
+
+var API_RECADOS="https://script.google.com/macros/s/AKfycbzbMm_G-tDYYpWVla5P8uDrR7XF-Q8HEFNFG6y0XqtCyNw5GaUFgjHofbLBei72BtjhVw/exec";
 
 function carregar(){
 
@@ -312,9 +313,7 @@ Reservar presente
 
 `;
 
-}
-
-else{
+}else{
 
 html+=`
 
@@ -357,43 +356,11 @@ nome:nome
 })
 })
 .then(()=>{
-
 alert("Presente reservado com sucesso!");
-
 carregar();
-
 });
 
 }
-
-carregar();
-
-<section class="recados">
-
-<h2>💌 Recado para os noivos</h2>
-
-<p>
-Deixe uma mensagem especial para nós.
-Ficaremos muito felizes em ler!
-</p>
-
-<input id="nomeRecado" placeholder="Seu nome">
-
-<br><br>
-
-<textarea id="textoRecado" placeholder="Escreva seu recado..." rows="4"></textarea>
-
-<br><br>
-
-<button onclick="enviarRecado()">
-Enviar recado
-</button>
-
-</section>
-
-</script>
-
-var API_RECADOS="https://script.google.com/macros/s/AKfycbzbMm_G-tDYYpWVla5P8uDrR7XF-Q8HEFNFG6y0XqtCyNw5GaUFgjHofbLBei72BtjhVw/exec";
 
 function enviarRecado(){
 
@@ -413,15 +380,16 @@ recado:recado
 })
 })
 .then(()=>{
-
 alert("Recado enviado com sucesso!");
-
 document.getElementById("nomeRecado").value="";
 document.getElementById("textoRecado").value="";
-
 });
 
 }
+
+carregar();
+
+</script>
 
 </body>
 
